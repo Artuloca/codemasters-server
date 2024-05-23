@@ -8,6 +8,19 @@ app.use(bodyParser.json());
 
 const users = []; // Este es un almacenamiento de usuarios en memoria. En una aplicación real, deberías usar una base de datos.
 
+function checkUsuarioCodeMasters(req, res, next) {
+    const usuarioCodeMasters = req.get('UsuarioCodeMasters');
+    if (usuarioCodeMasters) {
+        console.log(`UsuarioCodeMasters: ${usuarioCodeMasters}`);
+        req.logged = true;
+    } else {
+        req.logged = false;
+    }
+    next();
+}
+
+app.use(checkUsuarioCodeMasters);
+
 app.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = { email: req.body.email, password: hashedPassword };
@@ -24,7 +37,7 @@ app.post('/auth', async (req, res) => {
     try {
         if(await bcrypt.compare(req.body.password, user.password)) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-            res.json({ accessToken: accessToken });
+            res.json({ accessToken: accessToken, logged: req.logged });
         } else {
             res.send('No autorizado');
         }

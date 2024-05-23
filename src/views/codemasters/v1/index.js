@@ -16,4 +16,7 @@ router.use('/profesores', profesores)
 import asignaturas from "./asignaturas/index.js";
 router.use('/asignaturas', asignaturas)
 
+import cursos from './cursos/index.js'
+router.use('/cursos', cursos)
+
 export default router
