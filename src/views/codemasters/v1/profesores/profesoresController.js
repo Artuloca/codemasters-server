@@ -3,7 +3,7 @@
 let profesores = [
     { id: 1, nombre: 'Profesor 1', asignaturaId: 1 },
     { id: 2, nombre: 'Profesor 2', asignaturaId: 2 },
-    // Agrega más profesores aquí
+
 ];
 
 export function getProfesores(req, res) {

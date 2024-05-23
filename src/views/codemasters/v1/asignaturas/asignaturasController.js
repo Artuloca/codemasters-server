@@ -1,9 +1,12 @@
 'use strict'
 
+import { getAlumnos } from '../alumnos/alumnosController'
+import { getProfesor } from '../profesores/profesoresController'
+
 let asignaturas = [
-    { id: 1, nombre: 'Asignatura 1' },
-    { id: 2, nombre: 'Asignatura 2' },
-    // Agrega más asignaturas aquí
+    { id: 1, nombre: 'Asignatura 1', profesorId: 1 },
+    { id: 2, nombre: 'Asignatura 2', profesorId: 2 },
+    
 ];
 
 export function getAsignaturas(req, res) {
@@ -14,6 +17,14 @@ export function getAsignatura(req, res) {
     const id = parseInt(req.params.id);
     const asignatura = asignaturas.find(asignatura => asignatura.id === id);
     if (asignatura) {
+        // Recupera los alumnos y el profesor asociados a la asignatura
+        const alumnos = getAlumnos().filter(alumno => alumno.asignaturaId === id);
+        const profesor = getProfesor(asignatura.profesorId);
+
+        // Agrega los alumnos y el profesor al objeto de la asignatura
+        asignatura.alumnos = alumnos;
+        asignatura.profesor = profesor;
+
         res.json(asignatura);
     } else {
         res.status(404).send('Asignatura no encontrada');

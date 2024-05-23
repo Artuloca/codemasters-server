@@ -3,7 +3,7 @@
 let alumnos = [
     { id: 1, nombre: 'Alumno 1', cursoId: 1 },
     { id: 2, nombre: 'Alumno 2', cursoId: 2 },
-    // Agrega más alumnos aquí
+
 ];
 
 export function getAlumnos(req, res) {
