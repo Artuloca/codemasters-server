@@ -6,7 +6,7 @@ import { getProfesor } from '../profesores/profesoresController'
 let asignaturas = [
     { id: 1, nombre: 'Asignatura 1', profesorId: 1 },
     { id: 2, nombre: 'Asignatura 2', profesorId: 2 },
-    
+
 ];
 
 export function getAsignaturas(req, res) {
