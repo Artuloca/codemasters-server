@@ -10,10 +10,10 @@ router.get('/', (req, res, next) => {
 import alumnos from './alumnos/index.js'
 router.use('/alumnos', alumnos)
 
-import alumnos from './profesores/index.js'
+import profesores from "./profesores/index.js";
 router.use('/profesores', profesores)
 
-import alumnos from './asignaturas/index.js'
+import asignaturas from "./asignaturas/index.js";
 router.use('/asignaturas', asignaturas)
 
 export default router
